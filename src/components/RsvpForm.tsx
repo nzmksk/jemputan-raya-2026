@@ -175,11 +175,11 @@ export default function RsvpForm({ token, guestName, hasRsvp, rsvpAttending }: P
         {step === "choice" ? (
           // ── Step 1: choice buttons ──
           <div className="space-y-3">
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
                 onClick={() => setStep("form")}
-                className="btn-primary flex-1"
+                className="btn-primary sm:flex-1"
               >
                 Jom! 🧨
               </button>
@@ -188,7 +188,7 @@ export default function RsvpForm({ token, guestName, hasRsvp, rsvpAttending }: P
                 type="button"
                 disabled={pending}
                 onClick={handleDecline}
-                className="cursor-pointer flex-1 py-2.5 text-sm font-medium rounded-lg border border-red-800/60 text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="cursor-pointer sm:flex-1 py-2.5 text-sm font-medium rounded-lg border border-red-800/60 text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {pending ? "Jap bagitahu bini…" : "Taknak, werkk 😛"}
               </button>
@@ -322,11 +322,11 @@ export default function RsvpForm({ token, guestName, hasRsvp, rsvpAttending }: P
               </p>
             )}
 
-            <div className={`pt-2 ${editMode ? "flex gap-3" : ""}`}>
+            <div className={`pt-2 ${editMode ? "flex flex-col sm:flex-row gap-3" : ""}`}>
               <button
                 type="submit"
                 disabled={pending}
-                className={`btn-primary ${editMode ? "flex-1" : "w-full"}`}
+                className={`btn-primary ${editMode ? "sm:flex-1" : "w-full"}`}
               >
                 {pending ? "Jap bagitahu bini…" : editMode ? "Kompom" : "Hantar RSVP"}
               </button>
@@ -336,7 +336,7 @@ export default function RsvpForm({ token, guestName, hasRsvp, rsvpAttending }: P
                   type="button"
                   disabled={pending}
                   onClick={handleDecline}
-                  className="flex-1 cursor-pointer py-2.5 text-sm font-medium rounded-lg border border-red-800/60 text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="sm:flex-1 cursor-pointer py-2.5 text-sm font-medium rounded-lg border border-red-800/60 text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Tak Jadi Datang
                 </button>
