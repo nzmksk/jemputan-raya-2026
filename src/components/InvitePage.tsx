@@ -23,16 +23,18 @@ export default function InvitePage({ token, guestName, hasRsvp, rsvpAttending }:
 
     tryPlay();
 
-    // Fallback: play on first user interaction if autoplay was blocked
+    // Fallback: play on first user interaction if autoplay was blocked.
+    // iOS Safari requires touchstart or click to unlock audio; pointerdown alone is insufficient.
+    const unlockEvents = ["touchstart", "click", "pointerdown"] as const;
     const onInteract = () => {
       tryPlay();
-      window.removeEventListener("pointerdown", onInteract);
+      unlockEvents.forEach((e) => window.removeEventListener(e, onInteract));
     };
-    window.addEventListener("pointerdown", onInteract);
+    unlockEvents.forEach((e) => window.addEventListener(e, onInteract, { once: true }));
 
     return () => {
       audio.pause();
-      window.removeEventListener("pointerdown", onInteract);
+      unlockEvents.forEach((e) => window.removeEventListener(e, onInteract));
     };
   }, []);
 
