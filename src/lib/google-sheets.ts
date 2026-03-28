@@ -175,7 +175,7 @@ export async function getRsvp(token: string): Promise<RSVPRecord | null> {
 
   for (let i = 1; i < rows.length; i++) {
     if (rows[i][0] === token) {
-      const [, guestName, , numPeopleStr, nric, contact, plate, , dietaryStr] = rows[i];
+      const [, guestName, , numPeopleStr, nric, contact, plate, dietaryStr] = rows[i];
       const parts = dietaryStr ? dietaryStr.split(", ") : [];
       const dietary = parts.filter((d: string) => !d.startsWith("Other: "));
       const otherPart = parts.find((d: string) => d.startsWith("Other: "));
