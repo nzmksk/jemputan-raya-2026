@@ -19,6 +19,8 @@
 
   --font-family-display: "Playfair Display", Georgia, serif;
   --font-family-body: "Inter", system-ui, sans-serif;
+
+  --breakpoint-xs: 30rem; /* 480px */
 }
 
 @layer base {
@@ -128,7 +130,6 @@
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
-    min-width: 4.5rem;
   }
 
   .countdown-number {

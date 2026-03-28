@@ -47,7 +47,7 @@ export default function Countdown() {
       <div className="flex items-center justify-center gap-3 sm:gap-6">
         {LABELS.map((label, i) => (
           <div key={label} className="flex items-center gap-3 sm:gap-6">
-            <div className="countdown-block">
+            <div className="countdown-block min-w-12 sm:min-w-18">
               <span className="countdown-number">--</span>
               <span className="countdown-label">{label}</span>
             </div>
