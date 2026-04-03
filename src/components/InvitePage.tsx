@@ -9,9 +9,10 @@ interface Props {
   guestName: string;
   hasRsvp: boolean;
   rsvpAttending: boolean | null;
+  rsvpClosed: boolean;
 }
 
-export default function InvitePage({ token, guestName, hasRsvp, rsvpAttending }: Props) {
+export default function InvitePage({ token, guestName, hasRsvp, rsvpAttending, rsvpClosed }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function InvitePage({ token, guestName, hasRsvp, rsvpAttending }:
 
     // Fallback: play on first user interaction if autoplay was blocked.
     // iOS Safari requires touchstart or click to unlock audio; pointerdown alone is insufficient.
-    const unlockEvents = ["touchstart", "click", "pointerdown"] as const;
+    const unlockEvents = ["touchend", "touchstart", "click"] as const;
     const onInteract = () => {
       tryPlay();
       unlockEvents.forEach((e) => window.removeEventListener(e, onInteract));
@@ -170,12 +171,21 @@ export default function InvitePage({ token, guestName, hasRsvp, rsvpAttending }:
           <Countdown />
           <div className="divider" />
           <p className="text-center text-xs text-muted tracking-wider uppercase">
-            sebelum 2 April 2026, 6 petang
+            sebelum 3 April 2026, 6 petang
           </p>
         </section>
 
         {/* ── RSVP ── */}
-        <RsvpForm token={token} guestName={guestName} hasRsvp={hasRsvp} rsvpAttending={rsvpAttending} />
+        {rsvpClosed ? (
+          <div className="card p-8 text-center">
+            <h3 className="font-display text-2xl text-straw mb-2">RSVP Dah Tutup</h3>
+            <p className="text-muted text-sm leading-relaxed">
+              Haa tulah, buat kerja last minute lagi. Orang lain dah submit RSVP awal-awal.
+            </p>
+          </div>
+        ) : (
+          <RsvpForm token={token} guestName={guestName} hasRsvp={hasRsvp} rsvpAttending={rsvpAttending} />
+        )}
 
         {/* ── Footer ── */}
         <footer className="text-center pb-4">
