@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const RSVP_DEADLINE = new Date("2026-04-02T18:00:00+08:00");
-const RAYA_DATE = new Date("2026-04-05T00:00:00+08:00");
+import { RSVP_DEADLINE, RAYA_DATE } from "@/lib/dates";
 
 interface TimeLeft {
   days: number;
